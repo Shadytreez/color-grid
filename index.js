@@ -1,5 +1,6 @@
 var row = 0;
 var column = 0;
+var color = white; //white by default
 
 document.getElementById("addRow").addEventListener("click",function(){
     //for the 1st time    
@@ -83,6 +84,10 @@ document.getElementById("fillAll").addEventListener("click",function(){
 
 document.getElementById("resetColor").addEventListener("click",function(){
     
+});
+
+document.getElementById("color").addEventListener("change",function(){
+    color = document.getElementById("color").value;
 });
 
 function colorSelector()
