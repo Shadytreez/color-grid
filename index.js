@@ -57,7 +57,20 @@ document.getElementById("delRow").addEventListener("click",function(){
 });
 
 document.getElementById("delColumn").addEventListener("click",function(){
-    alert("dwdw");
+   
+    if(column == 0)
+    {return;}
+    for(let i =1; i <= row; i++){  
+    let delColumn = document.getElementById("row" +i.toString()).getElementsByTagName("td")[column-1]; 
+    document.getElementById("row" +i.toString()).removeChild(delColumn);
+   }
+
+   column--;
+   //if all of the column are gone the row is reset
+   if(column == 0)
+    {
+        row =0;
+    }
 });
 
 document.getElementById("fillEmpt").addEventListener("click",function(){
