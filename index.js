@@ -10,7 +10,7 @@ document.getElementById("addRow").addEventListener("click",function(){
         row =1;
         column =1;
         document.getElementById("grid").appendChild(newRow).setAttribute('id',"row"+ row.toString());
-        document.getElementById("row1").appendChild(newColumn);
+        document.getElementById("row1").appendChild(newColumn).addEventListener("click",colorSelector);
     }else
     {
         let newRow = document.createElement("tr");
@@ -18,7 +18,7 @@ document.getElementById("addRow").addEventListener("click",function(){
         document.getElementById("grid").appendChild(newRow).setAttribute('id',"row"+ row.toString());
         for(let i =0; i <column; i++)
         {   let newColumn = document.createElement("td");
-            document.getElementById("row" +row.toString()).appendChild(newColumn);
+            document.getElementById("row" +row.toString()).appendChild(newColumn).addEventListener("click",colorSelector);
         }
     }
     
@@ -34,19 +34,26 @@ document.getElementById("addColumn").addEventListener("click",function(){
         row =1;
         column =1;
         document.getElementById("grid").appendChild(newRow).setAttribute('id',"row"+ row.toString());
-        document.getElementById("row1").appendChild(newColumn).setAttribute('id',"colum"+ column.toString());
+        document.getElementById("row1").appendChild(newColumn).addEventListener("click",colorSelector);
     }else
     {
         column++;
         for(let i =1; i <=row; i++)
         {   let newColumn = document.createElement("td");
-            document.getElementById("row" +i.toString()).appendChild(newColumn);
+            document.getElementById("row" +i.toString()).appendChild(newColumn).addEventListener("click",colorSelector);
         }
     }
 });
 
 document.getElementById("delRow").addEventListener("click",function(){
-    alert("dwdw");
+    let delrow = document.getElementById("row" +row.toString());
+    document.getElementById("grid").removeChild(delrow);
+    row--;
+    //if all of the rows are gone the column is reset
+    if(row == 0)
+    {
+        column =0;
+    }
 });
 
 document.getElementById("delColumn").addEventListener("click",function(){
@@ -67,5 +74,5 @@ document.getElementById("resetColor").addEventListener("click",function(){
 
 function colorSelector()
 {
-
+    alert("dwdw");
 }
