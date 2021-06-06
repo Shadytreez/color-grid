@@ -20,9 +20,11 @@ document.getElementById("addRow").addEventListener("click",function(){
         let newRow = document.createElement("tr");
         row++;
         document.getElementById("grid").appendChild(newRow).setAttribute('id',"row"+ row.toString());
-        for(let i =0; i <column; i++)
+        for(let i =1; i <=column; i++)
         {   let newColumn = document.createElement("td");
-            document.getElementById("row" +row.toString()).appendChild(newColumn).addEventListener("click",colorSelector);
+            var columnID = "row"+ row.toString()+"column"+i.toString();
+            document.getElementById("row" +row.toString()).appendChild(newColumn).setAttribute("id", columnID);
+            document.getElementById(columnID).addEventListener("click",colorSelector(columnID));
         }
     }
     
@@ -39,13 +41,16 @@ document.getElementById("addColumn").addEventListener("click",function(){
         column =1;
         var columnID = "row"+ row.toString()+"column"+column.toString();
         document.getElementById("grid").appendChild(newRow).setAttribute('id',"row"+ row.toString());
-        document.getElementById("row1").appendChild(newColumn).setAttribute("id", columnID).addEventListener("click",colorSelector(columnID));
+        document.getElementById("row1").appendChild(newColumn).setAttribute("id", columnID);
+        document.getElementById(columnID).addEventListener("click",colorSelector(columnID));
     }else
     {
         column++;
         for(let i =1; i <=row; i++)
         {   let newColumn = document.createElement("td");
-            document.getElementById("row" +i.toString()).appendChild(newColumn).addEventListener("click",colorSelector);
+            var columnID = "row"+ i + "column"+ column.toString();
+            document.getElementById("row" +i.toString()).appendChild(newColumn).setAttribute("id", columnID);
+            document.getElementById(columnID).addEventListener("click",colorSelector(columnID));
         }
     }
 });
