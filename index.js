@@ -2,27 +2,36 @@ var row = 0;
 var column = 0;
 
 document.getElementById("addRow").addEventListener("click",function(){
-    //for the 1st time
+    //for the 1st time    
     if(row == 0 & column ==0)
     {
-        row =1;
-        column =1;
         let newRow = document.createElement("tr");
         let newColumn = document.createElement("td");
+        row =1;
+        column =1;
         document.getElementById("grid").appendChild(newRow).setAttribute('id',"row"+ row.toString());
-        document.getElementById("row1").appendChild(newColumn).setAttribute('id',"colum"+ column.toString());
+        document.getElementById("row1").appendChild(newColumn);
+    }else
+    {
+        let newRow = document.createElement("tr");
+        row++;
+        document.getElementById("grid").appendChild(newRow).setAttribute('id',"row"+ row.toString());
+        for(let i =0; i <column; i++)
+        {   let newColumn = document.createElement("td");
+            document.getElementById("row" +row.toString()).appendChild(newColumn);
+        }
     }
     
 });
 
 document.getElementById("addColumn").addEventListener("click",function(){
     //for the 1st time
+    let newRow = document.createElement("tr");
+    let newColumn = document.createElement("td");
     if(row == 0 & column ==0)
     {
         row =1;
         column =1;
-        let newRow = document.createElement("tr");
-        let newColumn = document.createElement("td");
         document.getElementById("grid").appendChild(newRow).setAttribute('id',"row"+ row.toString());
         document.getElementById("row1").appendChild(newColumn).setAttribute('id',"colum"+ column.toString());
     }
