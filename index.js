@@ -1,6 +1,6 @@
 var row = 0;
 var column = 0;
-var color = white; //white by default
+var color = "white"; //white by default
 
 document.getElementById("addRow").addEventListener("click",function(){
     //for the 1st time    
@@ -11,7 +11,10 @@ document.getElementById("addRow").addEventListener("click",function(){
         row =1;
         column =1;
         document.getElementById("grid").appendChild(newRow).setAttribute('id',"row"+ row.toString());
-        document.getElementById("row1").appendChild(newColumn).addEventListener("click",colorSelector);
+        var columnID = "row"+ row.toString()+"column"+column.toString();
+        document.getElementById("row1").appendChild(newColumn).setAttribute("id", columnID);
+        document.getElementById(columnID).addEventListener("click",colorSelector(columnID));
+        
     }else
     {
         let newRow = document.createElement("tr");
@@ -34,8 +37,9 @@ document.getElementById("addColumn").addEventListener("click",function(){
         let newColumn = document.createElement("td");
         row =1;
         column =1;
+        var columnID = "row"+ row.toString()+"column"+column.toString();
         document.getElementById("grid").appendChild(newRow).setAttribute('id',"row"+ row.toString());
-        document.getElementById("row1").appendChild(newColumn).addEventListener("click",colorSelector);
+        document.getElementById("row1").appendChild(newColumn).setAttribute("id", columnID).addEventListener("click",colorSelector(columnID));
     }else
     {
         column++;
@@ -75,7 +79,13 @@ document.getElementById("delColumn").addEventListener("click",function(){
 });
 
 document.getElementById("fillEmpt").addEventListener("click",function(){
-    alert("dwdw");
+    for(let i =1; i <= row; i++)
+    {
+        for(let j = 1; j < color;j++)
+        {
+
+        }
+    }
 });
 
 document.getElementById("fillAll").addEventListener("click",function(){
@@ -87,10 +97,12 @@ document.getElementById("resetColor").addEventListener("click",function(){
 });
 
 document.getElementById("color").addEventListener("change",function(){
-    color = document.getElementById("color").value;
+    color = document.getElementById("color").value.toString();
 });
 
-function colorSelector()
+function colorSelector(colorColumn)
 {
-    alert("dwdw");
+    document.getElementById(colorColumn).addEventListener("click", function(){
+        document.getElementById(colorColumn).style.backgroundColor = color;
+    });
 }
