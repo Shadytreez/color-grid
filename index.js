@@ -87,18 +87,32 @@ document.getElementById("fillEmpt").addEventListener("click",function(){
     for(let i =1; i <= row; i++)
     {
         for(let j = 1; j < color;j++)
-        {
-
+        {   
         }
     }
 });
 
 document.getElementById("fillAll").addEventListener("click",function(){
-    alert("dwdw");
+    for(let i =1; i <= row; i++)
+    {
+        for(let j = 1; j <= column;j++)
+        {   
+            let columnID = "row"+ i + "column"+ j;
+            console.log(columnID);
+            document.getElementById(columnID).style.backgroundColor = color;
+        }
+    }
 });
 
 document.getElementById("resetColor").addEventListener("click",function(){
-    
+    for(let i =1; i <= row; i++)
+    {
+        for(let j = 1; j <= column;j++)
+        {   
+            var columnID = "row"+ i + "column"+ j;
+            document.getElementById(columnID).style.backgroundColor = "white";
+        }
+    }
 });
 
 document.getElementById("color").addEventListener("change",function(){
