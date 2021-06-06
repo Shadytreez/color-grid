@@ -10,7 +10,6 @@ body{
     align-items:center;
     flex-wrap: wrap;
     justify-content: center;
-   
   }  
   header {
     padding: 20px;
@@ -24,3 +23,10 @@ body{
     padding:10px;
       
   }    
+  td {
+    padding: 2rem 2rem; 
+    background-color: white;
+    border: 1px black solid;
+    }
+
+  
