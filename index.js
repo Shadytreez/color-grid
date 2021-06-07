@@ -1,20 +1,21 @@
 var row = 0;
 var column = 0;
 var color = "white"; //white by default
-
+var filling = false;
 document.getElementById("addRow").addEventListener("click",function(){
     //for the 1st time    
     if(row == 0 & column ==0)
     {
-        let newRow = document.createElement("tr");
-        let newColumn = document.createElement("td");
-        row =1;
-        column =1;
-        document.getElementById("grid").appendChild(newRow).setAttribute('id',"row"+ row.toString());
-        var columnID = "row"+ row.toString()+"column"+column.toString();
-        document.getElementById("row1").appendChild(newColumn).setAttribute("id", columnID);
-        document.getElementById(columnID).addEventListener("click",colorSelector(columnID));
-        document.getElementById(columnID).style.backgroundColor = "white";
+        // let newRow = document.createElement("tr");
+        // let newColumn = document.createElement("td");
+        // row =1;
+        // column =1;
+        // document.getElementById("grid").appendChild(newRow).setAttribute('id',"row"+ row.toString());
+        // var columnID = "row"+ row.toString()+"column"+column.toString();
+        // document.getElementById("row1").appendChild(newColumn).setAttribute("id", columnID);
+        // document.getElementById(columnID).addEventListener("click",colorSelector(columnID));
+        // document.getElementById(columnID).style.backgroundColor = "white";
+        initalBox();
         
     }else
     {
@@ -27,6 +28,17 @@ document.getElementById("addRow").addEventListener("click",function(){
             document.getElementById("row" +row.toString()).appendChild(newColumn).setAttribute("id", columnID);
             document.getElementById(columnID).addEventListener("click",colorSelector(columnID));
             document.getElementById(columnID).style.backgroundColor = "white";
+            document.getElementById(columnID).addEventListener("mousedown",function(){
+                filling = true;
+            });
+            document.getElementById(columnID).addEventListener("mouseup",function(){
+                filling = false;
+            });
+            document.getElementById(columnID).addEventListener("mouseover",function(){
+                if(filling == true){
+                    document.getElementById(columnID).style.backgroundColor = color;
+                }
+            });
         }
     }
     
@@ -37,15 +49,16 @@ document.getElementById("addColumn").addEventListener("click",function(){
     
     if(row == 0 & column ==0)
     {
-        let newRow = document.createElement("tr");
-        let newColumn = document.createElement("td");
-        row =1;
-        column =1;
-        var columnID = "row"+ row.toString()+"column"+column.toString();
-        document.getElementById("grid").appendChild(newRow).setAttribute('id',"row"+ row.toString());
-        document.getElementById("row1").appendChild(newColumn).setAttribute("id", columnID);
-        document.getElementById(columnID).addEventListener("click",colorSelector(columnID));
-        document.getElementById(columnID).style.backgroundColor = "white";
+        // let newRow = document.createElement("tr");
+        // let newColumn = document.createElement("td");
+        // row =1;
+        // column =1;
+        // var columnID = "row"+ row.toString()+"column"+column.toString();
+        // document.getElementById("grid").appendChild(newRow).setAttribute('id',"row"+ row.toString());
+        // document.getElementById("row1").appendChild(newColumn).setAttribute("id", columnID);
+        // document.getElementById(columnID).addEventListener("click",colorSelector(columnID));
+        // document.getElementById(columnID).style.backgroundColor = "white";
+        initalBox();
     }else
     {
         column++;
@@ -55,6 +68,17 @@ document.getElementById("addColumn").addEventListener("click",function(){
             document.getElementById("row" +i.toString()).appendChild(newColumn).setAttribute("id", columnID);
             document.getElementById(columnID).addEventListener("click",colorSelector(columnID));
             document.getElementById(columnID).style.backgroundColor = "white";
+            document.getElementById(columnID).addEventListener("mousedown",function(){
+                filling = true;
+            });
+            document.getElementById(columnID).addEventListener("mouseup",function(){
+                filling = false;
+            });
+            document.getElementById(columnID).addEventListener("mouseover",function(){
+                if(filling == true){
+                    document.getElementById(columnID).style.backgroundColor = color;
+                }
+            });
         }
     }
 });
@@ -134,4 +158,27 @@ function colorSelector(colorColumn)
     document.getElementById(colorColumn).addEventListener("click", function(){
         document.getElementById(colorColumn).style.backgroundColor = color;
     });
+}
+
+function initalBox(){
+        let newRow = document.createElement("tr");
+        let newColumn = document.createElement("td");
+        row =1;
+        column =1;
+        document.getElementById("grid").appendChild(newRow).setAttribute('id',"row"+ row.toString());
+        var columnID = "row"+ row.toString()+"column"+column.toString();
+        document.getElementById("row1").appendChild(newColumn).setAttribute("id", columnID);
+        document.getElementById(columnID).addEventListener("click",colorSelector(columnID));
+        document.getElementById(columnID).style.backgroundColor = "white";
+        document.getElementById(columnID).addEventListener("mousedown",function(){
+            filling = true;
+        });
+        document.getElementById(columnID).addEventListener("mouseup",function(){
+            filling = false;
+        });
+        document.getElementById(columnID).addEventListener("mouseover",function(){
+            if(filling == true){
+                document.getElementById(columnID).style.backgroundColor = color;
+            }
+        });
 }
