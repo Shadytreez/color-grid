@@ -14,6 +14,7 @@ document.getElementById("addRow").addEventListener("click",function(){
         var columnID = "row"+ row.toString()+"column"+column.toString();
         document.getElementById("row1").appendChild(newColumn).setAttribute("id", columnID);
         document.getElementById(columnID).addEventListener("click",colorSelector(columnID));
+        document.getElementById(columnID).style.backgroundColor = "white";
         
     }else
     {
@@ -25,6 +26,7 @@ document.getElementById("addRow").addEventListener("click",function(){
             var columnID = "row"+ row.toString()+"column"+i.toString();
             document.getElementById("row" +row.toString()).appendChild(newColumn).setAttribute("id", columnID);
             document.getElementById(columnID).addEventListener("click",colorSelector(columnID));
+            document.getElementById(columnID).style.backgroundColor = "white";
         }
     }
     
@@ -43,6 +45,7 @@ document.getElementById("addColumn").addEventListener("click",function(){
         document.getElementById("grid").appendChild(newRow).setAttribute('id',"row"+ row.toString());
         document.getElementById("row1").appendChild(newColumn).setAttribute("id", columnID);
         document.getElementById(columnID).addEventListener("click",colorSelector(columnID));
+        document.getElementById(columnID).style.backgroundColor = "white";
     }else
     {
         column++;
@@ -51,6 +54,7 @@ document.getElementById("addColumn").addEventListener("click",function(){
             var columnID = "row"+ i + "column"+ column.toString();
             document.getElementById("row" +i.toString()).appendChild(newColumn).setAttribute("id", columnID);
             document.getElementById(columnID).addEventListener("click",colorSelector(columnID));
+            document.getElementById(columnID).style.backgroundColor = "white";
         }
     }
 });
@@ -86,8 +90,15 @@ document.getElementById("delColumn").addEventListener("click",function(){
 document.getElementById("fillEmpt").addEventListener("click",function(){
     for(let i =1; i <= row; i++)
     {
-        for(let j = 1; j < color;j++)
+        for(let j = 1; j <= column;j++)
         {   
+            let columnID = "row"+ i + "column"+ j;
+            let myDivBackGroundColor = document.getElementById(columnID).style.backgroundColor;
+            console.log(myDivBackGroundColor);
+            if(myDivBackGroundColor == "white")
+            {
+                document.getElementById(columnID).style.backgroundColor = color;
+            }
         }
     }
 });
@@ -98,7 +109,6 @@ document.getElementById("fillAll").addEventListener("click",function(){
         for(let j = 1; j <= column;j++)
         {   
             let columnID = "row"+ i + "column"+ j;
-            console.log(columnID);
             document.getElementById(columnID).style.backgroundColor = color;
         }
     }
