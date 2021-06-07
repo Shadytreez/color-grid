@@ -6,17 +6,7 @@ document.getElementById("addRow").addEventListener("click",function(){
     //for the 1st time    
     if(row == 0 & column ==0)
     {
-        // let newRow = document.createElement("tr");
-        // let newColumn = document.createElement("td");
-        // row =1;
-        // column =1;
-        // document.getElementById("grid").appendChild(newRow).setAttribute('id',"row"+ row.toString());
-        // var columnID = "row"+ row.toString()+"column"+column.toString();
-        // document.getElementById("row1").appendChild(newColumn).setAttribute("id", columnID);
-        // document.getElementById(columnID).addEventListener("click",colorSelector(columnID));
-        // document.getElementById(columnID).style.backgroundColor = "white";
         initalBox();
-        
     }else
     {
         let newRow = document.createElement("tr");
@@ -27,18 +17,19 @@ document.getElementById("addRow").addEventListener("click",function(){
             var columnID = "row"+ row.toString()+"column"+i.toString();
             document.getElementById("row" +row.toString()).appendChild(newColumn).setAttribute("id", columnID);
             document.getElementById(columnID).addEventListener("click",colorSelector(columnID));
-            document.getElementById(columnID).style.backgroundColor = "white";
+            document.getElementById(columnID).style.backgroundColor = "white";      
             document.getElementById(columnID).addEventListener("mousedown",function(){
                 filling = true;
+                holdMode();
             });
             document.getElementById(columnID).addEventListener("mouseup",function(){
                 filling = false;
             });
-            document.getElementById(columnID).addEventListener("mouseover",function(){
-                if(filling == true){
-                    document.getElementById(columnID).style.backgroundColor = color;
-                }
-            });
+          
+            // document.getElementById(columnID).addEventListener("mouseleave",function(){
+            //     filling = false;
+            // });
+            
         }
     }
     
@@ -46,18 +37,8 @@ document.getElementById("addRow").addEventListener("click",function(){
 
 document.getElementById("addColumn").addEventListener("click",function(){
     //for the 1st time
-    
     if(row == 0 & column ==0)
     {
-        // let newRow = document.createElement("tr");
-        // let newColumn = document.createElement("td");
-        // row =1;
-        // column =1;
-        // var columnID = "row"+ row.toString()+"column"+column.toString();
-        // document.getElementById("grid").appendChild(newRow).setAttribute('id',"row"+ row.toString());
-        // document.getElementById("row1").appendChild(newColumn).setAttribute("id", columnID);
-        // document.getElementById(columnID).addEventListener("click",colorSelector(columnID));
-        // document.getElementById(columnID).style.backgroundColor = "white";
         initalBox();
     }else
     {
@@ -70,15 +51,12 @@ document.getElementById("addColumn").addEventListener("click",function(){
             document.getElementById(columnID).style.backgroundColor = "white";
             document.getElementById(columnID).addEventListener("mousedown",function(){
                 filling = true;
+                holdMode();
             });
             document.getElementById(columnID).addEventListener("mouseup",function(){
                 filling = false;
             });
-            document.getElementById(columnID).addEventListener("mouseover",function(){
-                if(filling == true){
-                    document.getElementById(columnID).style.backgroundColor = color;
-                }
-            });
+            
         }
     }
 });
@@ -171,14 +149,27 @@ function initalBox(){
         document.getElementById(columnID).addEventListener("click",colorSelector(columnID));
         document.getElementById(columnID).style.backgroundColor = "white";
         document.getElementById(columnID).addEventListener("mousedown",function(){
+            document.getElementById(columnID).style.backgroundColor =  color;
             filling = true;
+            holdMode();
         });
         document.getElementById(columnID).addEventListener("mouseup",function(){
             filling = false;
-        });
+        });        
+}
+
+function holdMode(){
+for(let i =1; i <= row; i++)
+{
+    for(let j=1; j<= column; j++)
+    {
+        let columnID = "row"+ i + "column"+ j;
         document.getElementById(columnID).addEventListener("mouseover",function(){
-            if(filling == true){
+        if(filling == true)
+        {
                 document.getElementById(columnID).style.backgroundColor = color;
-            }
+        }
         });
+    }
+} 
 }
